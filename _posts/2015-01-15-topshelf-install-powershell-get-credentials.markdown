@@ -23,16 +23,17 @@ When installing a Topshelf service with the `--interactive` parameter (we need t
 We initially used the following command line to install the services:
 
     
-    . $pathToServiceExe --install --interactive --autostart
-
+```powershell
+. $pathToServiceExe --install --interactive --autostart
+```
 
 To fix this we will give the `$pathToServiceExe` the username and password ourselves with the `-username` and `-password`. We should also omit the `--interactive`.
 
 First gotcha here: When reading the [documentation](http://topshelf.readthedocs.org/en/latest/overview/commandline.html), it says one must specify the commands in this format:
 
-    
-    . $pathToServiceExe --install --autostart -username:username -password:password
-
+```powershell    
+. $pathToServiceExe --install --autostart -username:username -password:password
+```
 
 However, this is not the case. You mustn't separate the command line argument and the value with a `:`.
 
@@ -40,19 +41,20 @@ Now, we don't want to hardcode the username & password file in the setup script.
 
 So let's get the credentials of the current user:
 
-    
-    $credentialsOfCurrentUser = Get-Credential -Message "Please enter your username & password for the service installs"
-
+   
+```powershell
+$credentialsOfCurrentUser = Get-Credential -Message "Please enter your username & password for the service installs"
+```
 
 Next up we should extract the username & password of the `$credentialsOfCurrentUser` variable, as we need it in clear-text (potential security risk!).
 
 One can do this in 2 ways, either by getting the `NetworkCredential` from the `PSCredential` with `GetNetworkCredential()`:
 
-    
-    $networkCredentials = $credentialsOfCurrentUser.GetNetworkCredential();
-    $username = ("{0}\{1}") -f $networkCredentials.Domain, $networkCredentials.UserName # change this if you want the user@domain syntax, it will then have an empty Domain and everything will be in UserName. 
-    $password = $networkCredentials.Password
-    
+```powershell
+$networkCredentials = $credentialsOfCurrentUser.GetNetworkCredential();
+$username = ("{0}\{1}") -f $networkCredentials.Domain, $networkCredentials.UserName # change this if you want the user@domain syntax, it will then have an empty Domain and everything will be in UserName. 
+$password = $networkCredentials.Password
+```    
 
 
 Notice the `$username` caveat.
@@ -60,14 +62,14 @@ Notice the `$username` caveat.
 Or, by not converting it to a `NetworkCredential`:
 
     
-    # notice the UserName contains the Domain AND the UserName, no need to extract it separately
-    $username = $credentialsOfCurrentUser.UserName
-    
-    # little more for the password
-    $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($credentialsOfCurrentUser.Password)
-    $password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-    
+```powershell
+# notice the UserName contains the Domain AND the UserName, no need to extract it separately
+$username = $credentialsOfCurrentUser.UserName
 
+# little more for the password
+$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($credentialsOfCurrentUser.Password)
+$password = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+```    
 
 Notice the extra code to retrieve the `$password` in plain-text.
 
@@ -75,19 +77,20 @@ I would recommend combining both, using the `NetworkCredential` for the `$passwo
 
 So the best version is:
 
-    
-    $credentialsOfCurrentUser = Get-Credential -Message "Please enter your username & password for the service installs" 
-    $networkCredentials = $credentialsOfCurrentUser.GetNetworkCredential();
-    $username = $credentialsOfCurrentUser.UserName
-    $password = $networkCredentials.Password
-    
+```powershell
+$credentialsOfCurrentUser = Get-Credential -Message "Please enter your username & password for the service installs" 
+$networkCredentials = $credentialsOfCurrentUser.GetNetworkCredential();
+$username = $credentialsOfCurrentUser.UserName
+$password = $networkCredentials.Password
+```    
 
 
 Now that we have those variables we can pass them on to the install of the Topshelf exe:
 
     
-    . $pathToServiceExe install -username `"$username`" -password `"$password`" --autostart
-    
+```powershell
+. $pathToServiceExe install -username `"$username`" -password `"$password`" --autostart
+```    
 
 
 Notice the backticks (\`) to ensure the double quotes are escaped.

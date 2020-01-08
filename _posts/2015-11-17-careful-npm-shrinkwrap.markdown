@@ -34,20 +34,20 @@ And then stuff starts to break. You get emails that its health is degraded. Th
 
 At 2a.m. you open your laptop, and you start looking at the logs. There you find something in the lines of:
 
-    
-      npm ERR! Linux 3.14.48-33.39.amzn1.x86_64
-      npm ERR! argv "/usr/bin/iojs" "/usr/bin/npm" "install"
-      npm ERR! node v2.4.0
-      npm ERR! npm  v2.13.0
-      
-      npm ERR! version not found: node-uuid@1.4.4
-      npm ERR! 
-      npm ERR! If you need help, you may report this error at:
-      npm ERR!     <https://github.com/npm/npm/issues>
-      
-      npm ERR! Please include the following file with any support request:
-      npm ERR!     /app/npm-debug.log
-    
+```
+npm ERR! Linux 3.14.48-33.39.amzn1.x86_64
+npm ERR! argv "/usr/bin/iojs" "/usr/bin/npm" "install"
+npm ERR! node v2.4.0
+npm ERR! npm  v2.13.0
+
+npm ERR! version not found: node-uuid@1.4.4
+npm ERR! 
+npm ERR! If you need help, you may report this error at:
+npm ERR!     <https://github.com/npm/npm/issues>
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /app/npm-debug.log
+```
 
 
 What? You tested locally? What happened?
@@ -58,16 +58,16 @@ All goes well. Or does it?
 
 Let's look at the output:
 
-    
-    C:\__SOURCES>mkdir test
-    
-    C:\__SOURCES>cd test
-    
-    C:\__SOURCES\test>npm install node-uuid@1.4.4
-    npm http GET https://registry.npmjs.org/node-uuid/1.4.4
-    npm http 404 https://registry.npmjs.org/node-uuid/1.4.4
-    node-uuid@1.4.4 node_modules\node-uuid
-    
+```
+C:\__SOURCES>mkdir test
+
+C:\__SOURCES>cd test
+
+C:\__SOURCES\test>npm install node-uuid@1.4.4
+npm http GET https://registry.npmjs.org/node-uuid/1.4.4
+npm http 404 https://registry.npmjs.org/node-uuid/1.4.4
+node-uuid@1.4.4 node_modules\node-uuid
+```
 
 
 Notice the `404`? I didn't... But it's important!
@@ -77,16 +77,7 @@ Now here's what happened: locally I had `node-uuid@1.4.4` in my cache, so he too
 However: my new instance on Elastic Beanstalk didn't. That's why it failed.
 
 So, solutions:
-
-
-
 	
-  * Be careful when you `shrinkwrap`. Stuff might break in the future, as authors delete packages
-
-	
-  * Create a private feed, that you curate
-
-	
-  * As a package author, don't delete packages. Just don't. Other people might depend on you.
-
-
+* Be careful when you `shrinkwrap`. Stuff might break in the future, as authors delete packages
+* Create a private feed, that you curate
+* As a package author, don't delete packages. Just don't. Other people might depend on you.

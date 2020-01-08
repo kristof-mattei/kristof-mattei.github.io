@@ -11,7 +11,7 @@ categories:
 
 Yesterday I wanted to download some content off a website with F#, however unfortunately the certificate of the website was expired.
 
-```
+```fsharp
 let result = 
     try
         let request = 
@@ -36,7 +36,7 @@ If we execute this, then result would be of Error with the following exception:
 
 {% include image.html name="remote_certificate_invalid.png" caption="SSL certificate validation exception" %}
 
-```
+```fsharp
 ex.Message
 "The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel."
 ex.InnerException.Message
@@ -56,7 +56,7 @@ Also, this is for ALL calls, if you want to do it on a specific call you need to
 
 First of all, it doesn't work with [`WebRequest.Create`](https://msdn.microsoft.com/en-us/library/bw00b1dc(v=vs.110).aspx), you need to use [`WebRequest.CreateHttp`](https://msdn.microsoft.com/en-us/library/ff382788(v=vs.110).aspx), or cast the [`WebRequest`](https://msdn.microsoft.com/en-us/library/system.net.webrequest(v=vs.110).aspx) to [`HttpWebRequest`](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest(v=vs.110).aspx), as the property we need, [`ServerCertificateValidationCallback`](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.servercertificatevalidationcallback(v=vs.110).aspx) is not available on [`WebRequest`](https://msdn.microsoft.com/en-us/library/system.net.webrequest(v=vs.110).aspx), only on [`HttpWebRequest`](https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest(v=vs.110).aspx). The resulting code looks like this:
 
-```
+```fsharp
 let request = 
     "https://somewebsite/with/expired/ssl/certificate/data.json?paramx=1&paramy=2"
     |> WebRequest.CreateHttp

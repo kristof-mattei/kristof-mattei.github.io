@@ -26,37 +26,42 @@ You first need to install the IIS Dynamic Content Compression module:
 Or, if you're a command line guy, execute the following command in an elevated CMD:
 
     
-    dism /online /Enable-Feature /FeatureName:IIS-HttpCompressionDynamic
+```
+dism /online /Enable-Feature /FeatureName:IIS-HttpCompressionDynamic
+```
 
 
 Next up you need to enable the Dynamic Content Compression to compress
 
     
-    application/json
+```
+application/json
+```
 
 
 and
 
-    
-    application/json; charset=utf-8
+```
+application/json; charset=utf-8
+```
 
 
 To do this, execute the following commands in an elevated CMD:
 
-    
-    cd c:\Windows\System32\inetsrv
-    
-    appcmd.exe set config -section:system.webServer/httpCompression /+"dynamicTypes.[mimeType='application/json',enabled='True']" /commit:apphost
-    appcmd.exe set config -section:system.webServer/httpCompression /+"dynamicTypes.[mimeType='application/json; charset=utf-8',enabled='True']" /commit:apphost
+```
+cd c:\Windows\System32\inetsrv
+
+appcmd.exe set config -section:system.webServer/httpCompression /+"dynamicTypes.[mimeType='application/json',enabled='True']" /commit:apphost
+appcmd.exe set config -section:system.webServer/httpCompression /+"dynamicTypes.[mimeType='application/json; charset=utf-8',enabled='True']" /commit:apphost
     
 
 
 This adds the 2 mimetypes to the list of types the module is allowed to compress. Validate that they are added with this command:
 
     
-    appcmd.exe list config -section:system.webServer/httpCompression
-    
-
+```
+appcmd.exe list config -section:system.webServer/httpCompression
+```
 
 Validate that the 2 mimetypes are there and enabled:
 
@@ -73,14 +78,8 @@ In services.msc you'll need to search for Windows Process Activation Service. R
 Obviously there are more settings available, take a look at the [httpCompression Element](http://msdn.microsoft.com/en-us/library/ms690689.aspx) settings page.
 
 I recommend reading about 2 at least:
-
-
-
-	
-  * dynamicCompressionDisableCpuUsage
-
-	
-  * noCompressionForProxies
+* dynamicCompressionDisableCpuUsage
+* noCompressionForProxies
 
 
 Good luck,

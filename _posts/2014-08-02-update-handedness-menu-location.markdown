@@ -20,9 +20,9 @@ I got a machine in my hands which exhibited the previously mentioned problem. Ho
 
 After searching the bowels of the internet I found the following shell shortcut:
 
-    
-    shell:::{80F3F1D5-FECA-45F3-BC32-752C152E456E}
-
+```
+shell:::{80F3F1D5-FECA-45F3-BC32-752C152E456E}
+```
 
 Putting this in Winkey+R, or in the Windows 7/8(.1) search box will open the Tablet PC Settings, and if you don't have a touch screen, will default to the Other tab, where you can change the handedness of your menus!
 

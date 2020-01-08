@@ -15,48 +15,48 @@ categories:
 
 I had a weird problem today using a [Dictionary](http://msdn.microsoft.com/en-us/library/xfhwa508(v=vs.110).aspx). The process involved removing and adding data, and then printing the data. I assumed that it was ordered. I was wrong! Let me show you:
 
-    
-    var dictionary = new Dictionary<int, string>();
-    
-    dictionary.Add(5, "The");
-    dictionary.Add(7, "quick");
-    dictionary.Add(31, "brown");
-    dictionary.Add(145, "fox");
-    
-    dictionary.Remove(7); // remove the "quick" entry
+```csharp
+var dictionary = new Dictionary<int, string>();
 
+dictionary.Add(5, "The");
+dictionary.Add(7, "quick");
+dictionary.Add(31, "brown");
+dictionary.Add(145, "fox");
+
+dictionary.Remove(7); // remove the "quick" entry
+```
 
 After a while I added another line to the dictionary:
 
-    
-    dictionary.Add(423, "jumps");
-
+```csharp
+dictionary.Add(423, "jumps");
+```
 
 While printing this data I discovered an oddity.
 
-    
-    dictionary
-        .ToList()
-        .ForEach(e => Console.WriteLine("{0} => {1}", e.Key, e.Value));
-
+```csharp
+dictionary
+    .ToList()
+    .ForEach(e => Console.WriteLine("{0} => {1}", e.Key, e.Value));
+```
 
 What do you expect the output of this to be?
 
-    
-    5 => The
-    31 => brown
-    145 => fox
-    423 => jumps
-
+```csharp
+5 => The
+31 => brown
+145 => fox
+423 => jumps
+```
 
 However the actual result was this:
 
-    
-    5 => The
-    423 => jumps
-    31 => brown
-    145 => fox
-
+```csharp
+5 => The
+423 => jumps
+31 => brown
+145 => fox
+```
 
 The [documentation](http://msdn.microsoft.com/en-us/library/xfhwa508(v=vs.110).aspx) tells us the following:
 
@@ -70,33 +70,33 @@ If you look closely, first at [`Remove`](http://referencesource-beta.microsoft.c
 
 What's more weird is the behavior when you delete 2 entries, and then add 2 others:
 
-    
-    var dictionary = new Dictionary<int, string>();
-    
-    dictionary.Add(5, "The");
-    dictionary.Add(7, "quick");
-    dictionary.Add(31, "brown");
-    dictionary.Add(145, "fox");
-    
-    dictionary.Remove(7); // remove the "quick" entry
-    dictionary.Remove(31); // also remove the "brown" entry
-    
-    dictionary.Add(423, "jumps");
-    dictionary.Add(534, "high");
-    
-    dictionary
-        .ToList()
-        .ForEach(e => Console.WriteLine("{0} => {1}", e.Key, e.Value));
+```csharp
+var dictionary = new Dictionary<int, string>();
 
+dictionary.Add(5, "The");
+dictionary.Add(7, "quick");
+dictionary.Add(31, "brown");
+dictionary.Add(145, "fox");
+
+dictionary.Remove(7); // remove the "quick" entry
+dictionary.Remove(31); // also remove the "brown" entry
+
+dictionary.Add(423, "jumps");
+dictionary.Add(534, "high");
+
+dictionary
+    .ToList()
+    .ForEach(e => Console.WriteLine("{0} => {1}", e.Key, e.Value));
+```
 
 Which yields:
 
-    
-    5 => The
-    534 => high
-    423 => jumps
-    145 => fox
-
+```csharp
+5 => The
+534 => high
+423 => jumps
+145 => fox
+```
 
 But for that you'll need to look at [line 340](http://referencesource-beta.microsoft.com/#mscorlib/system/collections/generic/dictionary.cs#340) and further!
 

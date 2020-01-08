@@ -18,7 +18,7 @@ One of my colleagues just discovered this bug/feature in AngularJS. Using an [ng
 
 HTML:
 
-```
+```html
 <div ng-app>
     <div ng-controller="yesNoController">
         <div ng-if="yes">Yes is defined, will display</div>
@@ -31,7 +31,7 @@ HTML:
 
 JavaScript:
 
-```
+```javascript
 function yesNoController($scope) {
     $scope.yes = "yes";
     $scope.no = "no";
@@ -42,7 +42,9 @@ function yesNoController($scope) {
 Will print:
 
     
-    Yes is defined, will display
+```
+Yes is defined, will display
+```
     
 
 

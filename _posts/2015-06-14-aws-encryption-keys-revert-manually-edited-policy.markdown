@@ -22,7 +22,7 @@ It currently looked like this:
 Notice the sentence:
 
 
-<blockquote>We've detected that the policy document for this key has been manually edited. You may now edit the document directly to make changes to permissions.</blockquote>
+> We've detected that the policy document for this key has been manually edited. You may now edit the document directly to make changes to permissions.
 
 
 This gives a lot of issues, for example, you cannot view grants anymore through the UI, nor can you easily add & remove Key Administrators. While the API allows you to modify the grants, that wasn't enough for simple changes we'd like to make when testing / operating our products.
@@ -57,7 +57,7 @@ pip install boto3
 
 When that's done, we can open Python, and that key for its policy.
 
-```
+```python
 import boto3
 
 kms = boto3.client("iam")
@@ -77,7 +77,7 @@ print policy
 
 That policy is a JSON string. It's full of `\n` gibberish, so let's trim that out (in the same window, we reuse that `policy` variable):
 
-```
+```python
 import json
 
 json.dumps(json.loads(policy))
@@ -85,7 +85,7 @@ json.dumps(json.loads(policy))
 
 Which should give you this beautiful JSON document:
 
-```
+```python
 '{"Version": "2012-10-17", "Id": "key-consolepolicy-2", "Statement": [{"Action": "kms:*", "Principal": {"AWS": "arn:aws:iam::************:root"}, "Resource": "*", "Effect": "Allow", "Sid": "Enable IAM User Permissions"}, {"Action": ["kms:Describe*", "kms:Put*", "kms:Create*", "kms:Update*", "kms:Enable*", "kms:Revoke*", "kms:List*", "kms:Get*", "kms:Disable*", "kms:Delete*"], "Resource": "*", "Effect": "Allow", "Sid": "Allow access for Key Administrators"}, {"Action": ["kms:DescribeKey", "kms:GenerateDataKey*", "kms:Encrypt", "kms:ReEncrypt*", "kms:Decrypt"], "Resource": "*", "Effect": "Allow", "Sid": "Allow use of the key"}, {"Action": ["kms:ListGrants", "kms:CreateGrant", "kms:RevokeGrant"], "Resource": "*", "Effect": "Allow", "Condition": {"Bool": {"kms:GrantIsForAWSResource": true}}, "Sid": "Allow attachment of persistent resources"}]}'
 ```
 

@@ -11,7 +11,7 @@ Today I stumbled upon the following bug:
 
 We had an object with some properties that we wanted to update, but only if a certain property of that object is not set, i.e. it should be null.
 
-```
+```javascript
 {
     "Id": 1, // Id is the HashKey
 }
@@ -22,7 +22,7 @@ In this case we wanted to update the object with Id 1, and set an attribute call
 
 To do this I wrote the following Javascript, using the [aws-sdk](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/index.html):
 
-``` 
+```javascript
 function updateObject(id) {
     var dynamodb = new AWS.DynamoDB();
 
@@ -57,7 +57,7 @@ When I, in my mind, which talks (used to) talk SQL when thinging about a databas
 
 Consider the following table:
 
-```
+```sql
 CREATE TABLE Test(
     Id INT NOT NULL,
     Foo NVARCHAR(255) NULL
@@ -67,7 +67,7 @@ CREATE TABLE Test(
 
 With the following query:
 
-```
+```sql
 INSERT INTO Test (Id, Foo) VALUES (1, NULL), (2, N'Bar'), (3, NULL)
 GO
 
@@ -127,7 +127,7 @@ While testing on some non-existing values we saw that our code passed the testca
 Let's take a look again at the [documentation](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB.html#updateItem-property), this time do actually read the first line:
 
 
-<blockquote>Edits an existing item's attributes, **or adds a new item to the table if it does not already exist**.</blockquote>
+> Edits an existing item's attributes, **or adds a new item to the table if it does not already exist**.
 
 (emphasis mine).
 
@@ -135,7 +135,7 @@ Let's take a look again at the [documentation](http://docs.aws.amazon.com/AWSJav
 
 So we need to guard ourselves against updates on non-existing items? How do we do that? Let's extend our `ConditionExpression`. Start by taking the original code, and change the `ConditionExpression` as highlighted:
 
-```    
+```javascript
 function updateObject(id) {
     var dynamodb = new AWS.DynamoDB();
 

@@ -24,9 +24,9 @@ Allow me to elaborate.
 
 Consider a database with 3 tables:
 
-    
-    T2 --> T1 <-- T3
-
+```
+T2 --> T1 <-- T3
+```
 
 Where both `T2` and `T3` link to an entity in `T1`, thus we cannot delete lines from `T1` that are still referenced in `T2` or `T3`.
 
@@ -34,42 +34,41 @@ I jumped to C# and started playing with some code, and discovered the following 
 
 This doesn't use a `TransactionScope`, thus leaving the database in an inconsistent state:
 
-    
-    using (var sqlConnection = new SqlConnection(ConnectionString))
-    {
-        sqlConnection.Open();
-    
-        using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
-        {
-            sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
-            // DELETE FROM T1 will cause violation of integrity, because rows from T2 are still using rows from T1.
-    
-            sqlCommand.ExecuteNonQuery();
-        } 
-    }
+```csharp
+using (var sqlConnection = new SqlConnection(ConnectionString))
+{
+    sqlConnection.Open();
 
+    using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
+    {
+        sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
+        // DELETE FROM T1 will cause violation of integrity, because rows from T2 are still using rows from T1.
+
+        sqlCommand.ExecuteNonQuery();
+    } 
+}
+```
 
 Now I wanted to wrap this in a TransactionScope, so I tried this:
 
-    
-    using (var sqlConnection = new SqlConnection(ConnectionString))
-    {
-        sqlConnection.Open();
-    
-        using (var transactionScope = new TransactionScope())
-        {
-            using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
-            {
-                sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
-    
-                sqlCommand.ExecuteNonQuery();
-            }
-    
-            transactionScope.Complete();
-        }
-    }
-    
+```csharp
+using (var sqlConnection = new SqlConnection(ConnectionString))
+{
+    sqlConnection.Open();
 
+    using (var transactionScope = new TransactionScope())
+    {
+        using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
+        {
+            sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
+
+            sqlCommand.ExecuteNonQuery();
+        }
+
+        transactionScope.Complete();
+    }
+}
+```
 
 Well guess what, this essentially fixes nothing. The database, upon completion of the `ExecuteNonQuery()` is left in the same inconsistent state. `T3` was empty, which shouldn't happen since the delete from `T1` failed.
 
@@ -77,48 +76,46 @@ So what is the correct behavior?
 
 Well, it doesn't matter whether you create the `TransactionScope` or the `SqlConnection` first, **as long as you `Open()` the `SqlConnection` inside of the `TransactionScope`**:
 
-    
-    using (var transactionScope = new TransactionScope())
+```csharp
+using (var transactionScope = new TransactionScope())
+{
+    using (var sqlConnection = new SqlConnection(ConnectionString))
     {
-        using (var sqlConnection = new SqlConnection(ConnectionString))
+        sqlConnection.Open();
+
+        using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
         {
-            sqlConnection.Open();
-    
-            using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
-            {
-                sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
-    
-                sqlCommand.ExecuteNonQuery();
-            }
-    
-            transactionScope.Complete();
+            sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
+
+            sqlCommand.ExecuteNonQuery();
         }
-    }                                                                                                                           
-    
+
+        transactionScope.Complete();
+    }
+}                                                                                                                           
+```
 
 
 Or the inverse (swapping the declaration of the `TransactionScope` and `SqlConnection`):
 
-    
-    using (var sqlConnection = new SqlConnection(ConnectionString))
+```csharp
+using (var sqlConnection = new SqlConnection(ConnectionString))
+{
+    using (var transactionScope = new TransactionScope())
     {
-        using (var transactionScope = new TransactionScope())
+        sqlConnection.Open();
+
+        using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
         {
-            sqlConnection.Open();
-    
-            using (SqlCommand sqlCommand = sqlConnection.CreateCommand())
-            {
-                sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
-    
-                sqlCommand.ExecuteNonQuery();
-            }
-    
-            transactionScope.Complete();
+            sqlCommand.CommandText = "USE [TransactionScopeTests]; DELETE FROM T3; DELETE FROM T1;"; 
+
+            sqlCommand.ExecuteNonQuery();
         }
+
+        transactionScope.Complete();
     }
-    
-
-
+}
+```
 
 I wrote the test cases on a project on GitHub which you can download, compile and run as Tests for yourself!
 
