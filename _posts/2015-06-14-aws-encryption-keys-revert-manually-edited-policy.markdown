@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2015-06-14 14:04:58+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2015/06/14/aws-encryption-keys-revert-manually-edited-policy/
 slug: aws-encryption-keys-revert-manually-edited-policy
 title: 'AWS & Encryption keys: Revert manually edited policy'
 wordpress_id: 2330

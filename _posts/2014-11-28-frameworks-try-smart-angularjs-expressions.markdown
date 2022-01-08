@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2014-11-28 09:40:41+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2014/11/28/frameworks-try-smart-angularjs-expressions/
 slug: frameworks-try-smart-angularjs-expressions
 title: When frameworks try to be smart, AngularJS & Expressions
 wordpress_id: 2255

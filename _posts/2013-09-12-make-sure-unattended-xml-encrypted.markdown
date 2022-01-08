@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2013-09-12 16:16:20+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2013/09/12/make-sure-unattended-xml-encrypted/
 slug: make-sure-unattended-xml-encrypted
 title: Make sure unattended.xml is not encrypted!
 wordpress_id: 2051

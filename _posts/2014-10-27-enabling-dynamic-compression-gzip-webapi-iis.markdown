@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2014-10-27 18:43:08+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2014/10/27/enabling-dynamic-compression-gzip-webapi-iis/
 slug: enabling-dynamic-compression-gzip-webapi-iis
 title: Enabling dynamic compression (gzip) for WebAPI and IIS
 wordpress_id: 2244

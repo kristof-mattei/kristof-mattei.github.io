@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2015-01-15 15:10:27+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2015/01/15/topshelf-install-powershell-get-credentials/
 slug: topshelf-install-powershell-get-credentials
 title: Topshelf install, PowerShell and Get-Credentials
 wordpress_id: 2262

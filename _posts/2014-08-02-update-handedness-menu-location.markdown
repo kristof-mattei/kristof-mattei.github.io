@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2014-08-02 14:30:20+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2014/08/02/update-handedness-menu-location/
 slug: update-handedness-menu-location
 title: Update on handedness (menu location)
 wordpress_id: 2208

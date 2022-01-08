@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2014-01-13 20:39:02+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2014/01/13/dont-use-default-values-parameters-functions-public-apis/
 slug: dont-use-default-values-parameters-functions-public-apis
 title: Default values and overloads are not the same!
 wordpress_id: 2087

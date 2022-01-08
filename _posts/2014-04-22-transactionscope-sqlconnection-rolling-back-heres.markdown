@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2014-04-22 16:39:29+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2014/04/22/transactionscope-sqlconnection-rolling-back-heres/
 slug: transactionscope-sqlconnection-rolling-back-heres
 title: TransactionScope & SqlConnection not rolling back? Here's why...
 wordpress_id: 2120

@@ -3,7 +3,6 @@ author: Kristof
 comments: true
 date: 2014-03-04 20:52:00+00:00
 layout: post
-link: http://kristofmatteibe.azurewebsites.net/2014/03/04/dictionary-removing-adding-items-order/
 slug: dictionary-removing-adding-items-order
 title: About a dictionary, removing and adding items, and their order.
 wordpress_id: 2105
