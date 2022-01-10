@@ -5,7 +5,6 @@ date: 2014-01-13 20:39:02+00:00
 layout: post
 slug: dont-use-default-values-parameters-functions-public-apis
 title: Default values and overloads are not the same!
-wordpress_id: 2087
 categories:
 - .NET
 - C#

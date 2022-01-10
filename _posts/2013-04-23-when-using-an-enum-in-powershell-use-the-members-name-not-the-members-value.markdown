@@ -5,7 +5,6 @@ date: 2013-04-23 12:57:32+00:00
 layout: post
 slug: when-using-an-enum-in-powershell-use-the-members-name-not-the-members-value
 title: When using an enum in PowerShell, use the member's name, not the member's value
-wordpress_id: 1819
 categories:
 - .NET
 - C#

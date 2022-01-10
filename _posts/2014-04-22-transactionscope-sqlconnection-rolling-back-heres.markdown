@@ -5,7 +5,6 @@ date: 2014-04-22 16:39:29+00:00
 layout: post
 slug: transactionscope-sqlconnection-rolling-back-heres
 title: TransactionScope & SqlConnection not rolling back? Here's why...
-wordpress_id: 2120
 categories:
 - .NET
 - C#

@@ -5,7 +5,6 @@ date: 2014-08-02 14:30:20+00:00
 layout: post
 slug: update-handedness-menu-location
 title: Update on handedness (menu location)
-wordpress_id: 2208
 categories:
 - '7'
 - '8'

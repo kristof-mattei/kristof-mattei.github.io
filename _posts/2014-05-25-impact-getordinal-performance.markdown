@@ -5,7 +5,6 @@ date: 2014-05-25 11:56:53+00:00
 layout: post
 slug: impact-getordinal-performance
 title: The impact of SqlDataReader.GetOrdinal on performance
-wordpress_id: 2163
 categories:
 - .NET
 - C#

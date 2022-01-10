@@ -3,7 +3,6 @@ author: Kristof
 date: 2014-05-15 19:21:52+00:00
 layout: post
 title: Menu on the wrong side with a touch screen?
-wordpress_id: 2146
 categories:
 - '7'
 - '8'

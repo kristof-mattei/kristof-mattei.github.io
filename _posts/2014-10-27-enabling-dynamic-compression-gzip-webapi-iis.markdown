@@ -5,7 +5,6 @@ date: 2014-10-27 18:43:08+00:00
 layout: post
 slug: enabling-dynamic-compression-gzip-webapi-iis
 title: Enabling dynamic compression (gzip) for WebAPI and IIS
-wordpress_id: 2244
 categories:
 - Programming
 ---

@@ -5,7 +5,6 @@ date: 2013-06-15 16:25:51+00:00
 layout: post
 slug: c-5-0-spec-is-available-online-now
 title: C# 5.0 spec is available online now!
-wordpress_id: 1870
 categories:
 - .NET
 - C#

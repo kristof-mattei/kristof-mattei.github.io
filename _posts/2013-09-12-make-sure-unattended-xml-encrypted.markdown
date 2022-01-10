@@ -5,7 +5,6 @@ date: 2013-09-12 16:16:20+00:00
 layout: post
 slug: make-sure-unattended-xml-encrypted
 title: Make sure unattended.xml is not encrypted!
-wordpress_id: 2051
 categories:
 - '7'
 - OS

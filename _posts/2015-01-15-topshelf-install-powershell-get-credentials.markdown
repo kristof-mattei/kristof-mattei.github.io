@@ -5,7 +5,6 @@ date: 2015-01-15 15:10:27+00:00
 layout: post
 slug: topshelf-install-powershell-get-credentials
 title: Topshelf install, PowerShell and Get-Credentials
-wordpress_id: 2262
 categories:
 - Build automation
 - Powershell

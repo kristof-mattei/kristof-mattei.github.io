@@ -5,7 +5,6 @@ date: 2014-11-28 09:40:41+00:00
 layout: post
 slug: frameworks-try-smart-angularjs-expressions
 title: When frameworks try to be smart, AngularJS & Expressions
-wordpress_id: 2255
 categories:
 - AngularJS
 - HTML
