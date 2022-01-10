@@ -57,7 +57,7 @@ In `/etc/sysctl.conf` (or wherever it is on your flavor of Linux):
 # Enable IPv4 packet forwarding
 net.ipv4.ip_forward=1
 
-# Enable Proxy ARP ()
+# Enable Proxy ARP (https://en.wikipedia.org/wiki/Proxy_ARP)
 net.ipv4.conf.all.proxy_arp=1
 ```
 
