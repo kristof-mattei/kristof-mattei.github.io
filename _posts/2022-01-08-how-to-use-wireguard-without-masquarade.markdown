@@ -3,8 +3,8 @@ author: Kristof
 comments: true
 date: 2022-01-08 11:27:01-08:00
 layout: post
-slug: using-wireguard-without-masquerade
-title: Using Wireguard without Masquerade
+slug: how-to-use-wireguard-without-masquarade
+title: How to use Wireguard without Masquarade
 categories:
 - VPN
 ---
@@ -44,7 +44,7 @@ AllowedIPs = 192.168.30.10/32
 
 So what did we change? 
 
-1. We removed `PostUp` and `PostDown`, as these are only needed when we do NAT
+1. We removed `PostUp` and `PostDown`, as these are only needed when we do NAT (i.e. Masquarade)
 1. We set up the `Interface`'s address to be `.1` in our new range.
 1. We set our client to be `.10` in our new range.
 
