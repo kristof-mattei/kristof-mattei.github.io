@@ -33,6 +33,11 @@ We'll need a couple of things.
 * `openssl`
 * `python3`
 * A SWAG setup with a valid Let's Encrypt certificate
+* `conv.py` from [https://gist.github.com/ivanov17/67a8acb1bfd0e7b5e3929aa9fbc379a5](here)
+
+To start we'll have Traefik generate the `acme.json` file for us with the staging server. This way we ensure that our `acme.json` survives container recreation.
+
+PROTIP! Destroy your container and re-deploy there. Is `acme.json` still the same? Great! 
 
 If we look at `acme.json` we see 4 blanks that we have to fill in.
 
@@ -45,24 +50,24 @@ If we look at `acme.json` we see 4 blanks that we have to fill in.
         "body": {
           "status": "valid",
           "contact": [
-            "mailto:<email>" // 1
+            "mailto:<email>" // 2
           ]
         },
-        "uri": "<account uri>" // 2
+        "uri": "<account uri>" // 3
       },
-      "PrivateKey": "<private key>", // 3
+      "PrivateKey": "<private key>", // 4
       "KeyType": "4096"
     },
     "Certificates": [
       {
         "domain": {
-          "main": "<domain>", // 4
+          "main": "<domain>", // 5
           "sans": [
-            "*.<domain>" // 4
+            "*.<domain>" // 5
           ]
         },
-        "certificate": "<certificate>", // 5
-        "key": "<key>", // 5
+        "certificate": "<certificate>", // 6
+        "key": "<key>", // 7
         "Store": "default"
       }
     ]
@@ -70,5 +75,59 @@ If we look at `acme.json` we see 4 blanks that we have to fill in.
 }
 ```
 
-Let's fill in the blanks based on our certbot's output...
+### `Email` (1), (2)
+Your email address. I'm not sure if it needs to match the original one or not. I didn't do it, and it still works!
+
+For (2) make sure to retain the `mailto:` prefix.
+
+### `Registration.uri` (3)
+This field is the `uri` found in `<swag>/etc/letsencrypt/accounts/acme-v02.api.letsencrypt.org/directory/******/meta.json`
+
+### `PrivateKey` (4)
+For this you need the `private_key.json` found in `<swag>/etc/letsencrypt/accounts/acme-v02.api.letsencrypt.org/directory/<some identifier>/private_key.json`.
+
+You also need `openssl`, `python3` and `conv.py`.
+
+The command you'll want to execute is:
+
+```
+# convert the key to a standard format
+$ openssl asn1parse -noout -out private_key.der -genconf <(python3 conv.py private_key.json)
+# dump to base64
+$ cat private_key.der | base64 --wrap=0
+```
+
+Now on screen you have the private key in base64 format in a way that can be pasted inside the `PrivateKey` field.
+
+### `domain` (5)
+
+The domain for which you had the certificate
+
+### `certificate` (6)
+
+This is the public key certificate for your keypair.
+
+You can find the old one here: `<swag>/etc/letsencrypt/live/<domain>/fullchain.pem`.
+
+You can dump it to the console and base64 it:
+
+```
+# dump to base64
+$ cat fullchain.pem | base64 --wrap=0
+```
+
+Note: you _MAY_ need to put in linebreaks between each certificate before converting it to `base64`.
+
+And c/p that in `certificate`.
+
+### `key` (7)
+
+For this one you'll want to take the private key in your domain folder and convert it to the format Traefik wants:
+
+```
+$ openssl pkcs8 -topk8 -nocrypt -in privkey.pem | base64 --wrap=0
+```
+
+And paste that in in `key`!
+
 
