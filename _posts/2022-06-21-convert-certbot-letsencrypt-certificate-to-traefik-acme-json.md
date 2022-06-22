@@ -36,33 +36,33 @@ We'll need a couple of things.
 
 If we look at `acme.json` we see 4 blanks that we have to fill in.
 
-```
+```jsonc
 {
   "letsencrypt": {
     "Account": {
-      "Email": "<email>",
+      "Email": "<email>", // 1
       "Registration": {
         "body": {
           "status": "valid",
           "contact": [
-            "mailto:<email>"
+            "mailto:<email>" // 1
           ]
         },
-        "uri": "<uri>"
+        "uri": "<account uri>" // 2
       },
-      "PrivateKey": "<private key 1>",
+      "PrivateKey": "<private key>", // 3
       "KeyType": "4096"
     },
     "Certificates": [
       {
         "domain": {
-          "main": "<domain>",
+          "main": "<domain>", // 4
           "sans": [
-            "*.<domain>"
+            "*.<domain>" // 4
           ]
         },
-        "certificate": "<certificate>",
-        "key": "<private key 2>",
+        "certificate": "<certificate>", // 5
+        "key": "<key>", // 5
         "Store": "default"
       }
     ]
@@ -70,4 +70,5 @@ If we look at `acme.json` we see 4 blanks that we have to fill in.
 }
 ```
 
-5 iterations later I learned that I missed setting up Traefik's `acme.json` to my volumes, so Let's Encrypt
+Let's fill in the blanks based on our certbot's output...
+
