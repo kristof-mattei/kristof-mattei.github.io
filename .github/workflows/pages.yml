@@ -33,7 +33,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b # tag=v3.0.2
       - name: Setup Ruby
-        uses: ruby/setup-ruby@3068fa83f9cbd7ae106cac45483635a2f3a195c9 # v1.115.3
+        uses: ruby/setup-ruby@3068fa83f9cbd7ae106cac45483635a2f3a195c9 # tag=v1
         with:
           ruby-version: '3.0' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
