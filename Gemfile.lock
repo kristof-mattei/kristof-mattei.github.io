@@ -257,7 +257,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages (~> 228)
   minima (~> 2.5, >= 2.5.1)
-  webrick (~> 1.8)
+  webrick (~> 1.8, >= 1.8.1)
 
 BUNDLED WITH
    2.4.6
