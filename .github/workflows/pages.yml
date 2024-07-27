@@ -36,7 +36,7 @@ jobs:
           show-progress: false
 
       - name: Setup Ruby
-        uses: ruby/setup-ruby@50ba3386b050ad5b97a41fcb81240cbee1d1821f # v1.188.0
+        uses: ruby/setup-ruby@bc2ba926aade0711935b50bcb1b9ccdb5fde2dda # v1.189.0
         with:
           ruby-version: "3.0" # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
