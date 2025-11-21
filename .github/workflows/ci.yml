@@ -1,14 +1,16 @@
-name: Build Jekyll site
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
-
-permissions:
-  contents: read
+    branches:
+      - main
 
 concurrency:
-  group: "${{ github.workflow }}"
+  group: "${{ github.workflow }} @ ${{ github.ref_name }}"
   cancel-in-progress: true
 
 jobs:
