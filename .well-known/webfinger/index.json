@@ -1,0 +1,24 @@
+{
+    "subject": "acct:kristofmattei@infosec.exchange",
+    "aliases": [
+        "https://infosec.exchange/@kristofmattei",
+        "https://infosec.exchange/users/kristofmattei",
+        "kristofmattei@infosec.exchange"
+    ],
+    "links": [
+        {
+            "rel": "http://webfinger.net/rel/profile-page",
+            "type": "text/html",
+            "href": "https://infosec.exchange/@kristofmattei"
+        },
+        {
+            "rel": "self",
+            "type": "application/activity+json",
+            "href": "https://infosec.exchange/users/kristofmattei"
+        },
+        {
+            "rel": "http://ostatus.org/schema/1.0/subscribe",
+            "template": "https://infosec.exchange/authorize_interaction?uri={uri}"
+        }
+    ]
+}

@@ -21,7 +21,7 @@
 title: Kristof's blog
 email: kristof@mattei.io
 description: >-
-  Kristof is a software engineer living in California. He enjoys learning new computer languages, solving computer puzzles, tinkering with his home network, hiking and doing long road trips.
+  Kristof is a software engineer living in Phoenix, AZ. He enjoys learning new computer languages, solving computer puzzles, tinkering with his home network, hiking and doing long road trips.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://mattei.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: KristofMattei
@@ -39,6 +39,10 @@ plugins:
 #
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
+#
+include:
+  - ".well-known"
+#
 #
 # exclude:
 #   - .sass-cache/
