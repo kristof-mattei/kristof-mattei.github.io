@@ -163,7 +163,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  http_parser.rb (~> 0.6.0)
+  http_parser.rb (~> 0.8.0)
   jekyll-feed (~> 0.17)
   minima (~> 2.5, >= 2.5.2)
   tzinfo (>= 1, < 3)
