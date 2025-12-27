@@ -33,3 +33,5 @@ gem "wdm", "~> 0.2", :platforms => [:windows]
 gem "http_parser.rb", "~> 0.8.1", :platforms => [:jruby]
 
 gem "webrick", "~> 1.9", ">= 1.9.2"
+
+gem "logger", "~> 1.7"
