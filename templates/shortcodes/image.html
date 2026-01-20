@@ -1,0 +1,16 @@
+{% macro image() -%}
+<img
+    src="{{ page.path }}/{{ name }}"
+    {%- if alt %} alt="{{ alt }}"{% endif %}
+    {%- if width %} width="{{ width }}"{% endif %}
+    />
+{%- endmacro image -%}
+
+{% if caption %}
+<figure>
+    {{ self::image() }}
+    <figcaption>{{ caption }}</figcaption>
+</figure>
+{% else %}
+{{ self::image() }}
+{% endif %}

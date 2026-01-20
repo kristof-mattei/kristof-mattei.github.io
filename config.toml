@@ -1,0 +1,64 @@
+# The URL the site will be built for
+base_url = "https://mattei.io"
+
+# The site title and description
+title = "Kristof's blog"
+description = "Kristof is a software engineer living in Phoenix, AZ. He enjoys learning new computer languages, solving computer puzzles, tinkering with his home network, hiking and doing long road trips."
+
+# The default author for pages
+author = "Kristof"
+
+# The default language
+default_language = "en"
+
+# When set to "true", a feed is automatically generated.
+generate_feeds = true
+feed_filenames = ["rss.xml"]
+
+# The taxonomies to be rendered for the site
+taxonomies = [{ name = "categories", feed = true }]
+
+# Whether to compile sass files
+compile_sass = true
+
+# Whether to build a search index
+build_search_index = false
+
+# The theme to use for this site
+theme = "even"
+
+# Configuration of the Markdown rendering
+[markdown.highlighting]
+error_on_missing_language = true
+# When set to "true", all code blocks are highlighted.
+highlight_code = true
+
+style = "class"
+
+light_theme = "github-light"
+dark_theme = "github-dark"
+
+# # A list of files for additional JSON TextMate grammars
+# extra_grammars = []
+#
+# # A list of files for additional JSON TextMate themes
+# extra_themes = []
+
+[extra]
+# Even theme configuration
+even_title = "Kristof's blog"
+even_menu = [
+    { url = "/", name = "Home" },
+    { url = "/about", name = "About" },
+    { url = "/categories", name = "Categories" },
+]
+
+# Social links
+twitter_username = "KristofMattei"
+github_username = "kristof-mattei"
+
+# Google Analytics
+google_analytics = "G-59K1Q8YQE3"
+
+# Author email
+author_email = "kristof@mattei.io"
