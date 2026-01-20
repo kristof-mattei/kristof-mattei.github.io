@@ -1,0 +1,8 @@
+{% if caption %}
+<figure>
+    <img src="/images/{{ path }}/{{ name }}"{% if alt %} alt="{{ alt }}"{% endif %}{% if width %} width="{{ width }}"{% endif %} />
+    <figcaption>{{ caption }}</figcaption>
+</figure>
+{% else %}
+<img src="/images/{{ path }}/{{ name }}"{% if alt %} alt="{{ alt }}"{% endif %}{% if width %} width="{{ width }}"{% endif %} />
+{% endif %}
