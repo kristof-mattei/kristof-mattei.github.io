@@ -35,8 +35,9 @@ highlight_code = true
 
 style = "class"
 
-light_theme = "github-light"
-dark_theme = "github-dark"
+theme = "github-dark"
+# light_theme = "github-light"
+# dark_theme = "github-dark"
 
 # # A list of files for additional JSON TextMate grammars
 # extra_grammars = []
