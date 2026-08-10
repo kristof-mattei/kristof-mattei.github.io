@@ -32,7 +32,7 @@ let result =
 
 If we execute this, then result would be of Error with the following exception:
 
-{{ image(caption="SSL certificate validation exception", name="remote_certificate_invalid.png") }}
+{{ <image page caption="SSL certificate validation exception" src="remote_certificate_invalid.png" /> }}
 
 ```fsharp
 ex.Message

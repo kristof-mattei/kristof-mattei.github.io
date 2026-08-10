@@ -1,7 +1,7 @@
 +++
 title = "About"
 path = "about"
-template = "about.html"
+template = "page.html"
 +++
 
 About Kristof

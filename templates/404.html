@@ -1,8 +1,6 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 
-{% block extra_head %}
-{{ super() }}
-
+{% block head_extra %}
 <style type="text/css" media="screen">
     .container-404 {
         margin: 10px auto;
@@ -16,9 +14,11 @@
         letter-spacing: -1px;
     }
 </style>
-{% endblock extra_head %}
+{% endblock head_extra %}
 
-{% block title %}404 - Page Not Found{% endblock title %}
+{% block title -%}
+404 - Page Not Found | {{ config.title }}
+{%- endblock title %}
 
 {% block content %}
 <div class="container-404">

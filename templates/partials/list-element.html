@@ -1,0 +1,43 @@
+{% set banner_image = page.extra | get(key="image", default="") %}
+
+<div class="flex flex-col rounded-md shadow-md overflow-hidden shadow-neutral-800 bg-neutral-900 border-neutral-900 border-1">
+  {# Unlike the theme, only render a banner when the post provides one, no default banner #}
+  {% if banner_image | length > 0 %}
+  <div class="flex-shrink-0">
+    <a href="{{ page.permalink }}" aria-label="{{ page.title | default(value=res.empty_page_title) }}">
+      <img class="block h-48 w-full object-cover" src="{{ get_url(path=page.path ~ banner_image) }}" alt="{{ page.title | default(value=res.empty_page_title) }}"
+        {% if is_first %}fetchpriority="high" loading="eager"{% else %}loading="lazy"{% endif %}
+      />
+    </a>
+  </div>
+  {% endif %}
+  <div class="flex-1 p-6 flex flex-col justify-between">
+    <div class="flex-1">
+      {% include "partials/tags.html" %}
+      <a href="{{ page.permalink }}" class="block">
+        <h3 class="mt-2 text-xl leading-7 font-semibold text-neutral-100">
+          {{ page.title | default(value=res.empty_page_title) }}
+        </h3>
+      </a>
+      <p class="mt-3 text-base leading-6 text-neutral-400">
+        {# page.description is none (not undefined) when the front matter has no description, so `default` does not apply #}
+        {% if page.description %}{{ page.description }}{% else %}{{ page.content | striptags | truncate(length=200) }}{% endif %}
+      </p>
+    </div>
+    <div class="mt-6 flex items-center">
+      <div>
+        <div class="flex text-sm leading-5 text-neutral-400">
+          <time datetime="{{ page.date | date(format='%Y-%m-%d') }}">
+            {{ page.date | date(locale=date_locale, format=date_format) }}
+          </time>
+          <span class="mx-1">
+            &middot;
+          </span>
+          <span>
+            {{ page.reading_time | num_format(locale=locale) }} {{ page.reading_time | pluralize(singular=res.minutes.one, plural=res.minutes.other) }} {{ res.reading_time }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

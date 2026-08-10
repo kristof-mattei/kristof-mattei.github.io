@@ -132,7 +132,7 @@ Let's take a look again at the [documentation](http://docs.aws.amazon.com/AWSJav
 
 (emphasis mine).
 
-{{ image(name="homer-computer-doh.jpg") }}
+{{ <image page src="homer-computer-doh.jpg" /> }}
 
 So we need to guard ourselves against updates on non-existing items? How do we do that? Let's extend our `ConditionExpression`. Start by taking the original code, and change the `ConditionExpression` as highlighted:
 

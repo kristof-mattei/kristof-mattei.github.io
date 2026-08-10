@@ -27,7 +27,7 @@ I chose to use `192.168.30.0/24` for all my Wireguard clients.
 
 Our Wireguard server sits at `192.168.25.20`, so on the router we add the static route:
 
-{{ image(caption="Static route screenshot.", name="static-route-screenshot.png") }}
+{{ <image page caption="Static route screenshot." src="static-route-screenshot.png" /> }}
 
 ### Update Wireguard's config to not use Masquerade
 

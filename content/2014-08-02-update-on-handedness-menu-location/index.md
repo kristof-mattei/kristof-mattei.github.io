@@ -21,7 +21,7 @@ shell:::{80F3F1D5-FECA-45F3-BC32-752C152E456E}
 
 Putting this in Winkey+R, or in the Windows 7/8(.1) search box will open the Tablet PC Settings, and if you don't have a touch screen, will default to the Other tab, where you can change the handedness of your menus!
 
-{{ image(name="left_handed.png") }}
+{{ <image page src="left_handed.png" /> }}
 
 Have a good one,
 

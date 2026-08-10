@@ -112,7 +112,7 @@ And this rang a bell... The DNS address that I got pushed comes from my router's
 
 So how do we configure this with netplan? We cannot. If we look in netplan's code for `IPv6AcceptRA` which only yields the following result:
 
-{{ image(caption="Netplan doesn't support rendering the IPv6AcceptRA section.", name="ipv6acceptra-github.png") }}
+{{ <image page caption="Netplan doesn't support rendering the IPv6AcceptRA section." src="ipv6acceptra-github.png" /> }}
 
 ### Last try
 

@@ -15,7 +15,7 @@ One of those things was manually applying Key Policies on Encryption Keys.
 
 It currently looked like this:
 
-{{ image(name="manually-edited-key-policy.png") }}
+{{ <image page src="manually-edited-key-policy.png" /> }}
 
 Notice the sentence:
 
@@ -33,7 +33,7 @@ _Should you not have a 'working' key (as described next), and don't want to crea
 
 First, let's get the ARN of a working key, just navigate to the [Encryption Key section in the IAM Management console](https://console.aws.amazon.com/iam/home?region=eu-west-1#encryptionKeys), set your region and select your key, and copy the ARN:
 
-{{ image(caption="Find the ARN", name="find-the-ARN.png") }}
+{{ <image page caption="Find the ARN" src="find-the-ARN.png" /> }}
 
 So, how do we get that correct policy? Let's use Python with boto3.
 

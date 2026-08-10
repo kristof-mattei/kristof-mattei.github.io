@@ -18,11 +18,11 @@ Setup:
 
 I mounted the folder with `unattended.xml` (and other files) inside the VirtualBox and started sysprep (`sysprep+shutdown.cmd` just executes the sysprep with the `unattended.xml` from the location and copies a `SetupComplete.cmd` to `c:\Windows\Scripts`).
 
-{{ image(caption="Windows Setup encountered an internal error while loading or searching for an unattended answer file.", name="Windows-Setup-encountered.png") }}
+{{ <image page caption="Windows Setup encountered an internal error while loading or searching for an unattended answer file." src="Windows-Setup-encountered.png" /> }}
 
 When booting the VM I got the following error:
 
-{{ image(name="sysprep-files.png") }}
+{{ <image page src="sysprep-files.png" /> }}
 
 To investigate the error I hit up Shift+F10 and checked `c:\Windows\Panther\setuperr.log`, which had the following error:
 
@@ -38,7 +38,7 @@ cipher /s:c:\Windows\Panther
 
 I saw this:
 
-{{ image(name="cipher.png") }}
+{{ <image page src="cipher.png" /> }}
 
 Notice the `E`, which means, Encrypted.
 
@@ -50,7 +50,7 @@ notepad c:\Windows\Panther\unattended.xml
 
 confirmed my suspicion:
 
-{{ image(name="access-denied.png") }}
+{{ <image page src="access-denied.png" /> }}
 
 After removing the file with a Windows disk BEFORE the first boot (afterwards it doesn't work it seems) the boot went fine, I sysprepped it again (with a non-encrypted unattended.xml) and all went fine.
 

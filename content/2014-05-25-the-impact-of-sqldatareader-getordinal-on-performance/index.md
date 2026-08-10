@@ -132,11 +132,11 @@ And without `GetOrdinal`:
 
 With `GetOrdinal` the results are:
 
-{{ image(name="CreateWithGetOrdinal.png") }}
+{{ <image page src="CreateWithGetOrdinal.png" /> }}
 
 And without:
 
-{{ image(name="CreateWithoutGetOrdinal.png") }}
+{{ <image page src="CreateWithoutGetOrdinal.png" /> }}
 
 As you can see the performance difference is so low that I honestly don't think you should sacrifice the readability and maintainability of your code vs a mere 82 milliseconds on a 1000 queries. Readability speaks for itself, you don't talk with `int`s anymore, and for maintainability, consider the following: If your query column(s) change and you forget to update your code, `GetOrdinal` will throw an [IndexOutOfRangeException](http://msdn.microsoft.com/en-us/library/system.indexoutofrangeexception.aspx), instead of **maybe** get an [InvalidCastException](http://msdn.microsoft.com/en-us/library/system.invalidcastexception.aspx) or, if you're really unlucky, another column and then broken code behavior... One [sidenote](http://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqldatareader.getordinal.aspx) to add:
 

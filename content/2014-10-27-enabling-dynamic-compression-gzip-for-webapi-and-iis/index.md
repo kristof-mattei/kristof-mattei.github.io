@@ -19,7 +19,7 @@ But in the end, it's very simple to enable compression on your IIS server withou
 
 You first need to install the IIS Dynamic Content Compression module:
 
-{{ image(name="dynamic_content_compression.png") }}
+{{ <image page src="dynamic_content_compression.png" /> }}
 
 Or, if you're a command line guy, execute the following command in an elevated CMD:
 
@@ -59,7 +59,7 @@ appcmd.exe list config -section:system.webServer/httpCompression
 
 Validate that the 2 mimetypes are there and enabled:
 
-{{ image(name="cmd.png") }}
+{{ <image page src="cmd.png" /> }}
 
 And lastly, you'll probably need to restart the Windows Process Activation Service.
 
@@ -67,7 +67,7 @@ Best is to do this through the UI because I have yet to find a way in CMD to res
 
 In services.msc you'll need to search for Windows Process Activation Service. Restart it.
 
-{{ image(name="wpas.png") }}
+{{ <image page src="wpas.png" /> }}
 
 Obviously there are more settings available, take a look at the [httpCompression Element](http://msdn.microsoft.com/en-us/library/ms690689.aspx) settings page.
 
