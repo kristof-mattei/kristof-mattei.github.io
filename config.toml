@@ -43,7 +43,7 @@ title = "Kristof's blog"
 # Path to the language resource files
 path_language_resources = "themes/zolarwind/i18n/"
 
-generator = "Zola v0.23.2"
+generator = "Zola v0.23.6"
 
 copyright = "© {year} Kristof Mattei"
 
