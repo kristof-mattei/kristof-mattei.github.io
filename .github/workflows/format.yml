@@ -43,7 +43,17 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
 
+      - name: Install shfmt
+        uses: taiki-e/install-action@9983c65e42da123ff25d1f78505eb6de315aa172 # v2.87.20
+        with:
+          tool: shfmt
+
       - name: Run oxfmt
         shell: bash
         run: |
           pnpm exec oxfmt --check
+
+      - name: Run shfmt
+        shell: bash
+        run: |
+          shfmt --diff .
