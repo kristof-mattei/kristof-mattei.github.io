@@ -170,8 +170,8 @@ importers:
         specifier: 3.9.9
         version: 3.9.9
       prettier-plugin-sh:
-        specifier: 0.19.0
-        version: 0.19.0(prettier@3.9.9)
+        specifier: 0.20.0
+        version: 0.20.0(prettier@3.9.9)
       prettier-plugin-toml:
         specifier: 2.0.6
         version: 2.0.6(prettier@3.9.9)
@@ -209,8 +209,8 @@ packages:
   '@taplo/lib@0.5.0':
     resolution: {integrity: sha512-+xIqpQXJco3T+VGaTTwmhxLa51qpkQxCjRwezjFZgr+l21ExlywJFcDfTrNmL6lG6tqb0h8GyJKO3UPGPtSCWg==}
 
-  prettier-plugin-sh@0.19.0:
-    resolution: {integrity: sha512-39VXFZH/cOGtcuu8aeSvqp/hhwomOR4QroZUj+jBz2cNb3os9s0sqFZSNlYts6jdtLLDU7D2YT3Z1+abtb7adQ==}
+  prettier-plugin-sh@0.20.0:
+    resolution: {integrity: sha512-z2LxwlQWP5qon1d16tAWjIKuMNeEiT6CjkG4lCBAxnRS0SmDkw2463wVxNGlbnpDfq0OTcB77T3bI91uTv9xmA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       prettier: ^3.6.0
@@ -226,8 +226,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  sh-syntax@0.6.0:
-    resolution: {integrity: sha512-52VK6z/cdZHv7UURjIcwfBUQZrAhIEEe0bY4lrkfypjnFIKsDZdD3Uaz/dBiw/sF8BeX0Mssv140s8EnrsJ9dQ==}
+  sh-syntax@0.7.0:
+    resolution: {integrity: sha512-sgMyAxpHiGgAaNg+gD3ad41vha24CzIjjghD4mdiON1lUafZPLJNYknyjcXmU4geilPstd69zCKkpccY0YvajA==}
     engines: {node: '>=16.0.0'}
 
 snapshots:
@@ -257,11 +257,11 @@ snapshots:
     dependencies:
       '@taplo/core': 0.2.0
 
-  prettier-plugin-sh@0.19.0(prettier@3.9.9):
+  prettier-plugin-sh@0.20.0(prettier@3.9.9):
     dependencies:
       '@reteps/dockerfmt': 0.5.4
       prettier: 3.9.9
-      sh-syntax: 0.6.0
+      sh-syntax: 0.7.0
 
   prettier-plugin-toml@2.0.6(prettier@3.9.9):
     dependencies:
@@ -270,4 +270,4 @@ snapshots:
 
   prettier@3.9.9: {}
 
-  sh-syntax@0.6.0: {}
+  sh-syntax@0.7.0: {}
