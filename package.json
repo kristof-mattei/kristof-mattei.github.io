@@ -11,6 +11,9 @@
         "oxfmt": "0.70.0"
     },
     "lint-staged": {
+        "*.sh": [
+            "shfmt --diff --apply-ignore --"
+        ],
         "*": [
             "oxfmt --check --no-error-on-unmatched-pattern --"
         ]

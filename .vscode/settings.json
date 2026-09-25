@@ -15,6 +15,10 @@
         "editor.defaultFormatter": "oxc.oxc-vscode",
         "editor.formatOnSave": true
     },
+    "[shellscript]": {
+        "editor.defaultFormatter": "mkhl.shfmt",
+        "editor.formatOnSave": true
+    },
     "[toml]": {
         "editor.defaultFormatter": "oxc.oxc-vscode",
         "editor.formatOnSave": true
@@ -26,5 +30,6 @@
     "[yaml]": {
         "editor.defaultFormatter": "oxc.oxc-vscode",
         "editor.formatOnSave": true
-    }
+    },
+    "shfmt.formatIgnored": false
 }
