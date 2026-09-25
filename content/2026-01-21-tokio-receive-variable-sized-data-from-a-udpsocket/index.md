@@ -47,6 +47,6 @@ async fn get_buffer_size(socket: &UdpSocket) -> Result<usize, std::io::Error> {
 
 Couple of things to note:
 
-* We're using [`MSG_PEEK`](https://www.man7.org/linux/man-pages/man2/recv.2.html#:~:text=with%20such%20protocols.-,MSG_PEEK,-This%20flag%20causes) to ensure we don't pull the data from the buffer, we just look at it.
-* [`MSG_TRUNC`](https://www.man7.org/linux/man-pages/man2/recv.2.html#:~:text=the%20same%20data.-,MSG_TRUNC,-%28since%20Linux%202.2) to ensure we get back the total number of bytes pending in the kernel's buffer, not just the amount written to OUR buffer
-* We stack-allocated the buffer to avoid the allocation hit every time.
+- We're using [`MSG_PEEK`](https://www.man7.org/linux/man-pages/man2/recv.2.html#:~:text=with%20such%20protocols.-,MSG_PEEK,-This%20flag%20causes) to ensure we don't pull the data from the buffer, we just look at it.
+- [`MSG_TRUNC`](https://www.man7.org/linux/man-pages/man2/recv.2.html#:~:text=the%20same%20data.-,MSG_TRUNC,-%28since%20Linux%202.2) to ensure we get back the total number of bytes pending in the kernel's buffer, not just the amount written to OUR buffer
+- We stack-allocated the buffer to avoid the allocation hit every time.
