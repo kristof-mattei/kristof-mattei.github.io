@@ -51,7 +51,7 @@ site_description = "Kristof is a software engineer living in Phoenix, AZ. He enj
 
 # The main navigation menu
 menu_pages = [
-    { title = "About",      url = "/about/"      },
+    { title = "About", url = "/about/" },
     { title = "Categories", url = "/categories/" },
 ]
 
